@@ -1,40 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c78o70og0i0u1"]
+[gd_scene load_steps=8 format=3 uid="uid://c78o70og0i0u1"]
 
 [ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="1_m8fpw"]
+[ext_resource type="Script" uid="uid://s2etm8c6ndbo" path="res://UI/control.gd" id="1_q8egh"]
 [ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="2_ixc72"]
 [ext_resource type="Texture2D" uid="uid://m6llx84brofo" path="res://Assets/cr7_is_real_goat/cup.png" id="3_q8egh"]
+[ext_resource type="Script" uid="uid://c0sr65fcnobeq" path="res://UI/audio_options.gd" id="5_cubmi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cubmi"]
 texture = ExtResource("1_m8fpw")
 modulate_color = Color(0.3924328, 0.3924328, 0.3924328, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xr1y"]
-bg_color = Color(2.327803, 2.327803, 2.327803, 1)
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6k2x"]
-bg_color = Color(1.9549531, 1.9549527, 1.954953, 0.349)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87gto"]
-bg_color = Color(0.70796657, 0.7079665, 0.7079665, 0.6745098)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phknk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4dcu"]
 texture = ExtResource("3_q8egh")
@@ -46,82 +20,28 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_q8egh")
 
 [node name="argentina" type="Panel" parent="Control"]
-layout_mode = 0
-offset_left = -3.0
-offset_right = 287.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.075
+anchor_right = -0.075
+offset_left = 3.0
+offset_right = 293.0
 offset_bottom = 166.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_cubmi")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.7500002
-anchor_top = 1.0
-anchor_right = -3.7500002
-anchor_bottom = 1.0
-offset_left = 230.00002
-offset_top = 54.0
-offset_right = 356.0
-offset_bottom = 126.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Start" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.09411765, 0.09411765, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ixc72")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_0xr1y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_k6k2x")
-theme_override_styles/hover = SubResource("StyleBoxFlat_87gto")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_phknk")
-text = "Start"
-
-[node name="Options" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.09411765, 0.09411765, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ixc72")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_0xr1y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_k6k2x")
-theme_override_styles/hover = SubResource("StyleBoxFlat_87gto")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_phknk")
-text = "Options"
-
-[node name="Quit" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.09411765, 0.09411765, 1)
-theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_ixc72")
-theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_0xr1y")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_k6k2x")
-theme_override_styles/hover = SubResource("StyleBoxFlat_87gto")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_phknk")
-text = "Quit"
-
-[node name="Label" type="Label" parent="Control"]
+[node name="option_label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 24.0
-offset_right = 286.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(1, 0, 0.21568628, 1)
+offset_left = 97.0
+offset_top = 7.0
+offset_right = 204.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(1, 0.23921569, 0.047058824, 1)
 theme_override_fonts/font = ExtResource("2_ixc72")
-theme_override_font_sizes/font_size = 16
-text = "			Tiny Football
-World Cup 2022 Remake Version"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 32
+text = "Options"
 
 [node name="cup" type="Panel" parent="Control"]
 layout_mode = 0
@@ -129,3 +49,61 @@ offset_left = -2.0
 offset_right = 38.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_x4dcu")
+
+[node name="AudioOptions" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_cubmi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/AudioOptions"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 25.0
+offset_right = 115.0
+offset_bottom = 174.0
+alignment = 1
+
+[node name="master_label" type="Label" parent="Control/AudioOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ixc72")
+text = "Master Volume"
+
+[node name="master" type="HSlider" parent="Control/AudioOptions/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="intro_label" type="Label" parent="Control/AudioOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ixc72")
+text = "Intro volume"
+
+[node name="intro" type="HSlider" parent="Control/AudioOptions/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="spectrum_label" type="Label" parent="Control/AudioOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ixc72")
+text = "In-game volume"
+
+[node name="background" type="HSlider" parent="Control/AudioOptions/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="confirm" type="Button" parent="."]
+offset_left = 235.0
+offset_top = 137.0
+offset_right = 283.0
+offset_bottom = 161.0
+theme_override_fonts/font = ExtResource("2_ixc72")
+text = "Apply
+"
+
+[connection signal="mouse_exited" from="Control/AudioOptions/VBoxContainer/master" to="Control/AudioOptions" method="_on_master_mouse_exited"]
+[connection signal="mouse_exited" from="Control/AudioOptions/VBoxContainer/intro" to="Control/AudioOptions" method="_on_intro_mouse_exited"]
+[connection signal="mouse_exited" from="Control/AudioOptions/VBoxContainer/background" to="Control/AudioOptions" method="_on_background_mouse_exited"]
+[connection signal="pressed" from="confirm" to="Control" method="_on_confirm_pressed"]
