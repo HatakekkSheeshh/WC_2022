@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bd2vkdn70225k" path="res://Assets/Free Football Assets/Footballers/SanLorenzo/back.png" id="3_lryyh"]
 [ext_resource type="Texture2D" uid="uid://dhflx3bdkrd1f" path="res://Assets/Free Football Assets/Footballers/SanLorenzo/front.png" id="4_xc4xq"]
 [ext_resource type="Texture2D" uid="uid://bo2wpekjscqvo" path="res://Assets/Free Football Assets/Footballers/SanLorenzo/walk.png" id="5_lryyh"]
-[ext_resource type="Script" uid="uid://bsbmrml6o45dv" path="res://GameObject/kick_zone.gd" id="6_07chc"]
+[ext_resource type="Script" uid="uid://bsbmrml6o45dv" path="res://kick_zone.gd" id="6_07chc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rlpa5"]
 height = 22.0

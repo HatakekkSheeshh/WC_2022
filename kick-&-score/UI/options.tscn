@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://c78o70og0i0u1"]
+
+[ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="1_m8fpw"]
+[ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="2_ixc72"]
+[ext_resource type="Texture2D" uid="uid://m6llx84brofo" path="res://Assets/cr7_is_real_goat/cup.png" id="3_q8egh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cubmi"]
+texture = ExtResource("1_m8fpw")
+modulate_color = Color(0.3924328, 0.3924328, 0.3924328, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xr1y"]
+bg_color = Color(2.327803, 2.327803, 2.327803, 1)
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6k2x"]
+bg_color = Color(1.9549531, 1.9549527, 1.954953, 0.349)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87gto"]
+bg_color = Color(0.70796657, 0.7079665, 0.7079665, 0.6745098)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_phknk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4dcu"]
+texture = ExtResource("3_q8egh")
+
+[node name="Options" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="argentina" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = -3.0
+offset_right = 287.0
+offset_bottom = 166.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_cubmi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.7500002
+anchor_top = 1.0
+anchor_right = -3.7500002
+anchor_bottom = 1.0
+offset_left = 230.00002
+offset_top = 54.0
+offset_right = 356.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.09411765, 0.09411765, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ixc72")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xr1y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k6k2x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_87gto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_phknk")
+text = "Start"
+
+[node name="Options" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.09411765, 0.09411765, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ixc72")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xr1y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k6k2x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_87gto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_phknk")
+text = "Options"
+
+[node name="Quit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.09411765, 0.09411765, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ixc72")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_0xr1y")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_k6k2x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_87gto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_phknk")
+text = "Quit"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 24.0
+offset_right = 286.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(1, 0, 0.21568628, 1)
+theme_override_fonts/font = ExtResource("2_ixc72")
+theme_override_font_sizes/font_size = 16
+text = "			Tiny Football
+World Cup 2022 Remake Version"
+horizontal_alignment = 1
+
+[node name="cup" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 38.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_x4dcu")

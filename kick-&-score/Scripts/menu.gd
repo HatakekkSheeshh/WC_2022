@@ -4,13 +4,26 @@ extends Node2D
 @onready var option_btn = $Control/VBoxContainer/Options
 @onready var quit_btn = $Control/VBoxContainer/Quit
 
+# Intro music
+@onready var intro_sound = $intro_sound
+
 func _ready() -> void:
 	start_btn.pressed.connect(start_btn_pressed)
+	option_btn.pressed.connect(options_btn_pressed)
 	quit_btn.pressed.connect(quit_btn_pressed)
+	
+	# Music
+	if intro_sound.stream:
+		intro_sound.stream.loop = true
+	intro_sound.play()
 	
 func start_btn_pressed() -> void:
 	print("Button clicked")
 	get_tree().change_scene_to_file("res://Scenes/tilemap.tscn")
+	
+func options_btn_pressed() -> void:
+	print("In Options")
+	get_tree().change_scene_to_file("res://UI/options.tscn")
 	
 func quit_btn_pressed() -> void:
 	print("Quit")

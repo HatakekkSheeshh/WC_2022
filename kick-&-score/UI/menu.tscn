@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cikjw1c1ayvhy"]
+[gd_scene load_steps=12 format=3 uid="uid://cikjw1c1ayvhy"]
 
 [ext_resource type="Script" uid="uid://bdum3s72r61pn" path="res://Scripts/menu.gd" id="1_wfiwe"]
 [ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="3_4hkxj"]
 [ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="3_qmqfe"]
 [ext_resource type="Texture2D" uid="uid://m6llx84brofo" path="res://Assets/cr7_is_real_goat/cup.png" id="4_qmqfe"]
+[ext_resource type="AudioStream" uid="uid://ye4n27b68kj5" path="res://Assets/audio/Lamine_Yamal.mp3" id="6_dte3n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4hkxj"]
 texture = ExtResource("3_4hkxj")
@@ -113,22 +114,12 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_e05sn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_qmqfe")
 text = "Quit"
 
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 24.0
-offset_right = 286.0
-offset_bottom = 73.0
-theme_override_colors/font_color = Color(1, 0, 0.21568628, 1)
-theme_override_fonts/font = ExtResource("3_qmqfe")
-theme_override_font_sizes/font_size = 16
-text = "			Tiny Football
-World Cup 2022 Remake Version"
-horizontal_alignment = 1
-
 [node name="cup" type="Panel" parent="Control"]
 layout_mode = 0
 offset_left = -2.0
 offset_right = 38.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_e05sn")
+
+[node name="intro_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dte3n")

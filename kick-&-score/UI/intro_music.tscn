@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://68ml6683bene"]
+
+[node name="IntroMusic" type="AudioStreamPlayer"]
