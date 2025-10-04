@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cikjw1c1ayvhy"]
+[gd_scene load_steps=13 format=3 uid="uid://cikjw1c1ayvhy"]
 
 [ext_resource type="Script" uid="uid://bdum3s72r61pn" path="res://Scripts/menu.gd" id="1_wfiwe"]
 [ext_resource type="PackedScene" uid="uid://kcq366mdb7x8" path="res://UI/option.tscn" id="2_e05sn"]
 [ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="3_4hkxj"]
 [ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="3_qmqfe"]
 [ext_resource type="Texture2D" uid="uid://m6llx84brofo" path="res://Assets/cr7_is_real_goat/cup.png" id="4_qmqfe"]
+[ext_resource type="AudioStream" uid="uid://ye4n27b68kj5" path="res://Assets/audio/Lamine_Yamal.mp3" id="6_kfjwn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4hkxj"]
 texture = ExtResource("3_4hkxj")
@@ -135,3 +136,8 @@ offset_left = -2.0
 offset_right = 38.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_e05sn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kfjwn")
+autoplay = true
+bus = &"Intro"
