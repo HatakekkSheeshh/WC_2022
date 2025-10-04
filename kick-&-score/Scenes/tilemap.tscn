@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://bhnvfig8rs04g"]
+[gd_scene load_steps=89 format=4 uid="uid://bhnvfig8rs04g"]
 
 [ext_resource type="Texture2D" uid="uid://3pbqpcpffpyb" path="res://Assets/kenney_sports-pack/Tilesheet/groundGrass.png" id="1_4qq7b"]
 [ext_resource type="Script" uid="uid://bp4f6xnveebvp" path="res://Scripts/tilemap.gd" id="1_r3ohy"]
@@ -28,6 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://qtqqo63pjqih" path="res://GameObject/Player1.tscn" id="22_kqfkx"]
 [ext_resource type="Texture2D" uid="uid://cfhmggmkrdold" path="res://Assets/Free Football Assets/MoreItems/Buttons/HomeButton.png" id="26_47qo3"]
 [ext_resource type="Texture2D" uid="uid://d25il4w18l610" path="res://Assets/Free Football Assets/MoreItems/Buttons/PauseButton.png" id="27_47qo3"]
+[ext_resource type="Script" uid="uid://d31m4l311bu14" path="res://Scripts/player_team_1.gd" id="27_ob5p8"]
+[ext_resource type="Script" uid="uid://ckt1ed05m08jj" path="res://Scripts/player_team_2.gd" id="29_njqfi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4cen"]
 texture = ExtResource("2_kqfkx")
@@ -18179,12 +18181,6 @@ script = ExtResource("18_l3bdc")
 [node name="ball" parent="." instance=ExtResource("19_qqp52")]
 position = Vector2(1, -1)
 
-[node name="player1" parent="." instance=ExtResource("22_kqfkx")]
-position = Vector2(-29, -11)
-
-[node name="player2" parent="." instance=ExtResource("21_f8k6d")]
-position = Vector2(34, -11)
-
 [node name="home" type="Button" parent="."]
 offset_left = 261.0
 offset_top = -203.0
@@ -18211,3 +18207,27 @@ expand_icon = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.35, 0.35)
+
+[node name="PlayerTeam1" type="Node2D" parent="."]
+script = ExtResource("27_ob5p8")
+
+[node name="player1" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
+position = Vector2(-29, -11)
+
+[node name="player2" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
+position = Vector2(-118, -9)
+
+[node name="player3" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
+position = Vector2(-211, -10)
+
+[node name="PlayerTeam2" type="Node2D" parent="."]
+script = ExtResource("29_njqfi")
+
+[node name="player1" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
+position = Vector2(34, -11)
+
+[node name="player2" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
+position = Vector2(127, -11)
+
+[node name="player3" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
+position = Vector2(222, -9)
