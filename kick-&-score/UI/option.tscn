@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://kcq366mdb7x8"]
+[gd_scene load_steps=18 format=3 uid="uid://kcq366mdb7x8"]
 
 [ext_resource type="Script" uid="uid://s2etm8c6ndbo" path="res://Scripts/control.gd" id="1_wgt7d"]
 [ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="2_csjlg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://m6llx84brofo" path="res://Assets/cr7_is_real_goat/cup.png" id="4_82hor"]
 [ext_resource type="Script" uid="uid://c0sr65fcnobeq" path="res://Scripts/audio_options.gd" id="5_hq3r3"]
 [ext_resource type="Texture2D" uid="uid://xgaop8oag54r" path="res://Assets/Free Football Assets/MoreItems/Buttons/ResetButton.png" id="6_x8si8"]
+[ext_resource type="Texture2D" uid="uid://bf26848vwr0jy" path="res://Assets/Free Football Assets/MoreItems/Buttons/OnButton.png" id="7_csjlg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2r5sm"]
 texture = ExtResource("2_csjlg")
@@ -13,6 +14,12 @@ modulate_color = Color(0.3924328, 0.3924328, 0.3924328, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rkm6i"]
 texture = ExtResource("4_82hor")
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wgt7d"]
+color = Color(0.4833383, 0.6493678, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_csjlg"]
+color = Color(0.48235294, 0.6509804, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llk3m"]
 
@@ -39,6 +46,8 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ae8hv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxkm1"]
 
 [node name="Option" type="CanvasLayer"]
 
@@ -98,6 +107,9 @@ text = "Master Volume"
 
 [node name="master" type="HSlider" parent="OptionsPanel/AudioOptions/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/center_grabber = 0
+theme_override_constants/tick_offset = 0
+theme_override_styles/slider = SubResource("StyleBoxLine_wgt7d")
 max_value = 1.0
 step = 0.05
 
@@ -108,6 +120,7 @@ text = "In-game volume"
 
 [node name="background" type="HSlider" parent="OptionsPanel/AudioOptions/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/slider = SubResource("StyleBoxLine_csjlg")
 max_value = 1.0
 step = 0.05
 
@@ -143,6 +156,29 @@ text = "Apply
 "
 icon_alignment = 1
 expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 38.0
+offset_right = 284.0
+offset_bottom = 62.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_jxkm1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxkm1")
+theme_override_icons/arrow = ExtResource("7_csjlg")
+flat = true
+expand_icon = true
+selected = 0
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "2 Players"
+popup/item_0/id = 0
+popup/item_1/text = "1 Player"
+popup/item_1/id = 1
 
 [connection signal="mouse_exited" from="OptionsPanel/AudioOptions/VBoxContainer/master" to="OptionsPanel/AudioOptions" method="_on_master_mouse_exited"]
 [connection signal="mouse_exited" from="OptionsPanel/AudioOptions/VBoxContainer/background" to="OptionsPanel/AudioOptions" method="_on_background_mouse_exited"]
