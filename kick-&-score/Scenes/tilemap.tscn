@@ -1,9 +1,10 @@
-[gd_scene load_steps=83 format=4 uid="uid://bhnvfig8rs04g"]
+[gd_scene load_steps=87 format=4 uid="uid://bhnvfig8rs04g"]
 
 [ext_resource type="Texture2D" uid="uid://3pbqpcpffpyb" path="res://Assets/kenney_sports-pack/Tilesheet/groundGrass.png" id="1_4qq7b"]
-[ext_resource type="Script" uid="uid://bp4f6xnveebvp" path="res://Scenes/tilemap.gd" id="1_r3ohy"]
+[ext_resource type="Script" uid="uid://bp4f6xnveebvp" path="res://Scripts/tilemap.gd" id="1_r3ohy"]
 [ext_resource type="Texture2D" uid="uid://dw8hjd457s4r0" path="res://Assets/kenney_sports-pack/Tilesheet/groundBeige_blue.png" id="2_75hpu"]
 [ext_resource type="Texture2D" uid="uid://hn11olm64gvx" path="res://Assets/cr7_is_real_goat/pessi1.png" id="2_kqfkx"]
+[ext_resource type="PackedScene" uid="uid://kcq366mdb7x8" path="res://UI/option.tscn" id="2_qb32s"]
 [ext_resource type="Texture2D" uid="uid://c8amok0ylti8h" path="res://Assets/kenney_sports-pack/Tilesheet/groundGravel.png" id="3_bi1hd"]
 [ext_resource type="Texture2D" uid="uid://blrjsft88bcm7" path="res://Assets/kenney_sports-pack/Tilesheet/elements.png" id="4_boyy8"]
 [ext_resource type="Texture2D" uid="uid://c3q8tmskkdykf" path="res://Assets/Soccorpia Asset Pack/Soccorpia Asset Pack/Environment/Soccorpia Stadium Tiles.png" id="5_fctyr"]
@@ -25,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://c5ilymks4lj5n" path="res://GameObject/Player2.tscn" id="21_f8k6d"]
 [ext_resource type="AudioStream" uid="uid://b0nx1yps63jog" path="res://Assets/Project2_Sfx/crowd_shouting.wav" id="21_kqfkx"]
 [ext_resource type="PackedScene" uid="uid://qtqqo63pjqih" path="res://GameObject/Player1.tscn" id="22_kqfkx"]
+[ext_resource type="Texture2D" uid="uid://cfhmggmkrdold" path="res://Assets/Free Football Assets/MoreItems/Buttons/HomeButton.png" id="26_47qo3"]
+[ext_resource type="Texture2D" uid="uid://d25il4w18l610" path="res://Assets/Free Football Assets/MoreItems/Buttons/PauseButton.png" id="27_47qo3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4cen"]
 texture = ExtResource("2_kqfkx")
@@ -18012,9 +18015,13 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_47qo3"]
+
 [node name="Main" type="Node2D"]
 position = Vector2(576, 320)
 script = ExtResource("1_r3ohy")
+
+[node name="Option" parent="." instance=ExtResource("2_qb32s")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18023,7 +18030,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="Control"]
-layout_mode = 0
+layout_mode = 1
 offset_left = -848.0
 offset_top = -328.0
 offset_right = 712.0
@@ -18166,6 +18173,7 @@ frame_progress = 0.23039429
 [node name="spectrum_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_kqfkx")
 volume_db = -3.817
+bus = &"Background"
 script = ExtResource("18_l3bdc")
 
 [node name="ball" parent="." instance=ExtResource("19_qqp52")]
@@ -18176,6 +18184,30 @@ position = Vector2(-29, -11)
 
 [node name="player2" parent="." instance=ExtResource("21_f8k6d")]
 position = Vector2(34, -11)
+
+[node name="home" type="Button" parent="."]
+offset_left = 261.0
+offset_top = -203.0
+offset_right = 295.0
+offset_bottom = -167.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_47qo3")
+keep_pressed_outside = true
+icon = ExtResource("26_47qo3")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="setting" type="Button" parent="."]
+offset_left = 260.0
+offset_top = -166.0
+offset_right = 294.0
+offset_bottom = -130.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_47qo3")
+keep_pressed_outside = true
+icon = ExtResource("27_47qo3")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.35, 0.35)

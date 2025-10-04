@@ -1,0 +1,149 @@
+[gd_scene load_steps=14 format=3 uid="uid://kcq366mdb7x8"]
+
+[ext_resource type="Script" uid="uid://s2etm8c6ndbo" path="res://Scripts/control.gd" id="1_wgt7d"]
+[ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="2_csjlg"]
+[ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="3_jxkm1"]
+[ext_resource type="Texture2D" uid="uid://m6llx84brofo" path="res://Assets/cr7_is_real_goat/cup.png" id="4_82hor"]
+[ext_resource type="Script" uid="uid://c0sr65fcnobeq" path="res://Scripts/audio_options.gd" id="5_hq3r3"]
+[ext_resource type="Texture2D" uid="uid://xgaop8oag54r" path="res://Assets/Free Football Assets/MoreItems/Buttons/ResetButton.png" id="6_x8si8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2r5sm"]
+texture = ExtResource("2_csjlg")
+modulate_color = Color(0.3924328, 0.3924328, 0.3924328, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rkm6i"]
+texture = ExtResource("4_82hor")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llk3m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwwun"]
+bg_color = Color(0.08235294, 0.5921569, 0.7372549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbwwg"]
+bg_color = Color(0.08235294, 0.5921569, 0.7372549, 0.5058824)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywnwh"]
+bg_color = Color(0.08235294, 0.5921569, 0.7372549, 0.77254903)
+border_color = Color(0.5686275, 0.8392157, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ae8hv"]
+
+[node name="Option" type="CanvasLayer"]
+
+[node name="OptionsPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_wgt7d")
+
+[node name="argentina" type="Panel" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.075
+anchor_right = -0.075
+offset_left = 3.0
+offset_right = 320.0
+offset_bottom = 166.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_2r5sm")
+
+[node name="option_label" type="Label" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 97.0
+offset_top = 7.0
+offset_right = 204.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(1, 0.23921569, 0.047058824, 1)
+theme_override_fonts/font = ExtResource("3_jxkm1")
+theme_override_font_sizes/font_size = 32
+text = "Options"
+
+[node name="cup" type="Panel" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 38.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_rkm6i")
+
+[node name="AudioOptions" type="Control" parent="OptionsPanel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_hq3r3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/AudioOptions"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 115.0
+offset_bottom = 154.0
+alignment = 1
+
+[node name="master_label" type="Label" parent="OptionsPanel/AudioOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jxkm1")
+text = "Master Volume"
+
+[node name="master" type="HSlider" parent="OptionsPanel/AudioOptions/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="spectrum_label" type="Label" parent="OptionsPanel/AudioOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jxkm1")
+text = "In-game volume"
+
+[node name="background" type="HSlider" parent="OptionsPanel/AudioOptions/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="back" type="Button" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 269.0
+offset_right = 291.0
+offset_bottom = 21.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_llk3m")
+keep_pressed_outside = true
+icon = ExtResource("6_x8si8")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="confirm" type="Button" parent="OptionsPanel"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 142.0
+offset_right = 286.0
+offset_bottom = 158.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_jxkm1")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_rwwun")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xbwwg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ywnwh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ae8hv")
+text = "Apply
+"
+icon_alignment = 1
+expand_icon = true
+
+[connection signal="mouse_exited" from="OptionsPanel/AudioOptions/VBoxContainer/master" to="OptionsPanel/AudioOptions" method="_on_master_mouse_exited"]
+[connection signal="mouse_exited" from="OptionsPanel/AudioOptions/VBoxContainer/background" to="OptionsPanel/AudioOptions" method="_on_background_mouse_exited"]
+[connection signal="pressed" from="OptionsPanel/confirm" to="OptionsPanel" method="_on_confirm_pressed"]
