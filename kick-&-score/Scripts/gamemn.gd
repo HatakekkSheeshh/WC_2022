@@ -57,7 +57,7 @@ func _on_tick() -> void:
 		running = false
 		tick.stop()
 		_emit_time_if_changed()
-		emit_signal("time_up")
+		time_up.emit()
 		return
 	_emit_time_if_changed()
 

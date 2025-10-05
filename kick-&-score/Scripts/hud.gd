@@ -17,7 +17,7 @@ func _ready() -> void:
 	# Init
 	update_score()
 	update_clock()
-	
+	 
 	# subscribe
 	gm.time_changed.connect(_on_time_changed)
 	gm.score_changed.connect(_on_score_changed)
