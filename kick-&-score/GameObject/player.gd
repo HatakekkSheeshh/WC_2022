@@ -14,7 +14,8 @@ enum ControlScheme {P1, P2, CPU}
 @export var stamina_drain: float = 30.0            	# decrease/th.s when sprinting
 @export var stamina_recover_move: float = 5.0     	# recover/th.s when walking
 @export var stamina_recover_idle: float = 25.0     	# recover/th.s when idling
-@export var stamina_min_to_sprint: float = 10.0 
+@export var stamina_min_to_sprint: float = 10.0
+@export var kick_power: float = 1.5
 
 var stamina: float = 0.0
 @onready var bar: ProgressBar = $ProgressBar
@@ -48,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		player_movement(delta)
 		
-	handle_ball_interaction()
+	handle_ball_interaction(delta)
 	
 func player_movement(delta: float) -> void:
 	var direction = KeyUtils.get_input_vector(control_scheme)
@@ -105,7 +106,7 @@ func stamina_bar(delta: float) -> void:
 func change_scheme(new_scheme: ControlScheme) -> void:
 	control_scheme = new_scheme
 
-func handle_ball_interaction() -> void:
+func handle_ball_interaction(delta: float) -> void:
 	# Check for ball collision
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
@@ -113,23 +114,16 @@ func handle_ball_interaction() -> void:
 		
 		if collider is RigidBody2D and collider.is_in_group("ball"):
 			ball = collider
-			pushing_ball = true
 			
-			# Calculate kick force based on player's velocity and direction
-			var kick_force = velocity.normalized() * (speed * gain)
-			if sprint:
-				kick_force *= sprint_mult
+			var player_speed = velocity.length()
 			
-			# IMPORTANT: Don't add to the ball's existing velocity, just set it
-			# This prevents the compounding speed effect
-			ball.linear_velocity = kick_force
+			var kick_dir = collision.get_normal().normalized()
 			
-			# Apply a small impulse for better feel, but reduce the multiplier
-			ball.apply_impulse(velocity.normalized() * gain * 5)
+			var kick_force = (player_speed + 50) * kick_power
 			
-			# Add this: prevent the player from being pushed by the ball
-			# by slightly adjusting the player's position away from the ball
-			var push_vector = (global_position - ball.global_position).normalized() * 1.0
+			ball.apply_central_impulse(-kick_dir * kick_force)
+			
+			var push_vector = collision.get_normal() * 1.5
 			global_position += push_vector
 	
 	# Reset pushing_ball if we're not colliding with the ball anymore
