@@ -1,0 +1,68 @@
+extends Node2D
+
+# Signal
+signal time_changed(seconds_left: int)
+signal score_changed(score: Array[int])
+signal time_up
+
+@onready var tick: Timer = $playtime
+@export var match_minutes := 90
+@export var real_seconds := 30.0
+@export var tick_sec := 0.1
+
+var time_elapsed: float = 0.0
+var running := false
+var score: Array[int] = [0, 0]
+
+var _last_sec := -1 
+
+
+func _ready() -> void:
+	tick.wait_time = tick_sec
+	tick.timeout.connect(_on_tick)
+	_emit_time_if_changed()   
+
+func start() -> void:
+	running = true
+	tick.start()
+
+func pause_game(paused: bool = true) -> void:
+	running = !paused
+	tick.paused = paused
+
+func reset() -> void:
+	running = false
+	tick.stop()
+	time_elapsed = 0.0
+	_last_sec = -1
+	_emit_time_if_changed()
+
+func goal(side: int) -> void:
+	# side: 0 = home, 1 = away
+	if side == 0:
+		score[1] += 1
+	elif side == 1:
+		score[0] += 1
+	score_changed.emit(score)
+	# ball.call_deferred # reset to center
+
+func _on_tick() -> void:
+	if !running: return
+	var total = match_minutes * 60	# minute -> second
+	var factor = total / real_seconds
+	time_elapsed += factor * tick_sec
+	
+	if time_elapsed >= total:
+		time_elapsed = total
+		running = false
+		tick.stop()
+		_emit_time_if_changed()
+		emit_signal("time_up")
+		return
+	_emit_time_if_changed()
+
+func _emit_time_if_changed() -> void:
+	var s := int(floor(time_elapsed + 0.5)) 
+	if s != _last_sec:
+		_last_sec = s
+		emit_signal("time_changed", s)

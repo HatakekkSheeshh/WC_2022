@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8s2puhkino7s"]
+
+[ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="1_2o5uh"]
+[ext_resource type="Script" uid="uid://tsw66i0hti5k" path="res://UI/hud.gd" id="1_b1lf8"]
+[ext_resource type="Texture2D" uid="uid://dllrh27gs84i1" path="res://Assets/flag/ar.png" id="2_b1lf8"]
+[ext_resource type="Texture2D" uid="uid://bjpa4hrr2kpjm" path="res://Assets/flag/fr.png" id="3_rnl6m"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_b1lf8")
+
+[node name="ui_contain" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="ui_contain"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 106.0
+offset_right = 224.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui_contain/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = -22.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="playerlabel" type="Label" parent="ui_contain/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_fonts/font = ExtResource("1_2o5uh")
+text = "MBAPPE"
+
+[node name="homeflag" type="TextureRect" parent="ui_contain/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_b1lf8")
+stretch_mode = 2
+
+[node name="scorelabel" type="Label" parent="ui_contain/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2o5uh")
+theme_override_font_sizes/font_size = 16
+text = "1-0"
+horizontal_alignment = 1
+
+[node name="awayflag" type="TextureRect" parent="ui_contain/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_rnl6m")
+stretch_mode = 2
+
+[node name="timelabel" type="Label" parent="ui_contain/ColorRect/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5529556, 0.55295557, 0.55295557, 1)
+theme_override_fonts/font = ExtResource("1_2o5uh")
+text = "90:00"
+horizontal_alignment = 2

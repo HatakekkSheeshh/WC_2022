@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://kcq366mdb7x8"]
+[gd_scene load_steps=22 format=3 uid="uid://kcq366mdb7x8"]
 
 [ext_resource type="Script" uid="uid://s2etm8c6ndbo" path="res://Scripts/control.gd" id="1_wgt7d"]
 [ext_resource type="Texture2D" uid="uid://cj0eeti4u6e3" path="res://Assets/cr7_is_real_goat/pepsi.png" id="2_csjlg"]
@@ -18,11 +18,14 @@ modulate_color = Color(0.3924328, 0.3924328, 0.3924328, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rkm6i"]
 texture = ExtResource("4_82hor")
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_wgt7d"]
-color = Color(0.4833383, 0.6493678, 1, 1)
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hq3r3"]
+color = Color(0.5676227, 0.7089956, 1, 1)
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_csjlg"]
-color = Color(0.48235294, 0.6509804, 1, 1)
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_x8si8"]
+color = Color(0.5686275, 0.70980394, 1, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2r5sm"]
+color = Color(0.5686275, 0.70980394, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_llk3m"]
 
@@ -100,9 +103,9 @@ script = ExtResource("5_hq3r3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/AudioOptions"]
 layout_mode = 0
-offset_left = -52.0
+offset_left = -47.0
 offset_top = -37.0
-offset_right = 63.0
+offset_right = 68.0
 offset_bottom = 168.0
 alignment = 1
 
@@ -117,7 +120,9 @@ theme_override_constants/center_grabber = 0
 theme_override_constants/tick_offset = 0
 theme_override_icons/grabber = ExtResource("6_jxkm1")
 theme_override_icons/grabber_highlight = ExtResource("6_jxkm1")
-theme_override_styles/slider = SubResource("StyleBoxLine_wgt7d")
+theme_override_styles/slider = SubResource("StyleBoxLine_hq3r3")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_x8si8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_2r5sm")
 max_value = 1.0
 step = 0.05
 
@@ -132,7 +137,9 @@ theme_override_constants/center_grabber = 0
 theme_override_constants/tick_offset = 0
 theme_override_icons/grabber = ExtResource("7_hq3r3")
 theme_override_icons/grabber_highlight = ExtResource("7_hq3r3")
-theme_override_styles/slider = SubResource("StyleBoxLine_wgt7d")
+theme_override_styles/slider = SubResource("StyleBoxLine_hq3r3")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_x8si8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_2r5sm")
 max_value = 1.0
 step = 0.05
 
@@ -145,7 +152,9 @@ text = "In-game Volume"
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("8_x8si8")
 theme_override_icons/grabber_highlight = ExtResource("8_x8si8")
-theme_override_styles/slider = SubResource("StyleBoxLine_csjlg")
+theme_override_styles/slider = SubResource("StyleBoxLine_hq3r3")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_x8si8")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_2r5sm")
 max_value = 1.0
 step = 0.05
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=4 uid="uid://bhnvfig8rs04g"]
+[gd_scene load_steps=91 format=4 uid="uid://bhnvfig8rs04g"]
 
 [ext_resource type="Texture2D" uid="uid://3pbqpcpffpyb" path="res://Assets/kenney_sports-pack/Tilesheet/groundGrass.png" id="1_4qq7b"]
 [ext_resource type="Script" uid="uid://bp4f6xnveebvp" path="res://Scripts/tilemap.gd" id="1_r3ohy"]
@@ -25,11 +25,13 @@
 [ext_resource type="PackedScene" uid="uid://cwlu27850s3j5" path="res://GameObject/ball.tscn" id="19_qqp52"]
 [ext_resource type="PackedScene" uid="uid://c5ilymks4lj5n" path="res://GameObject/Player2.tscn" id="21_f8k6d"]
 [ext_resource type="AudioStream" uid="uid://b0nx1yps63jog" path="res://Assets/Project2_Sfx/crowd_shouting.wav" id="21_kqfkx"]
+[ext_resource type="Script" uid="uid://cq2we2w0see0d" path="res://Scripts/gamemn.gd" id="22_f168p"]
 [ext_resource type="PackedScene" uid="uid://qtqqo63pjqih" path="res://GameObject/Player1.tscn" id="22_kqfkx"]
 [ext_resource type="Texture2D" uid="uid://cfhmggmkrdold" path="res://Assets/Free Football Assets/MoreItems/Buttons/HomeButton.png" id="26_47qo3"]
 [ext_resource type="Texture2D" uid="uid://d25il4w18l610" path="res://Assets/Free Football Assets/MoreItems/Buttons/PauseButton.png" id="27_47qo3"]
-[ext_resource type="Script" uid="uid://d31m4l311bu14" path="res://Scripts/player_team_1.gd" id="27_ob5p8"]
-[ext_resource type="Script" uid="uid://ckt1ed05m08jj" path="res://Scripts/player_team_2.gd" id="29_njqfi"]
+[ext_resource type="Script" path="res://Scripts/player_team_1.gd" id="27_ob5p8"]
+[ext_resource type="Script" path="res://Scripts/player_team_2.gd" id="29_njqfi"]
+[ext_resource type="PackedScene" uid="uid://c8s2puhkino7s" path="res://UI/hud.tscn" id="31_njqfi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4cen"]
 texture = ExtResource("2_kqfkx")
@@ -18024,6 +18026,7 @@ position = Vector2(576, 320)
 script = ExtResource("1_r3ohy")
 
 [node name="Option" parent="." instance=ExtResource("2_qb32s")]
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -18150,7 +18153,7 @@ position = Vector2(154, -11)
 script = ExtResource("9_bhngk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Audience/B2"]
-position = Vector2(84, -62)
+position = Vector2(76, -62)
 sprite_frames = SubResource("SpriteFrames_0yelx")
 frame_progress = 0.4288637
 
@@ -18159,7 +18162,7 @@ position = Vector2(263, -18)
 script = ExtResource("9_bhngk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Audience/B3"]
-position = Vector2(2, -63)
+position = Vector2(-1, -51)
 sprite_frames = SubResource("SpriteFrames_3e32w")
 frame_progress = 0.1374822
 
@@ -18168,9 +18171,44 @@ position = Vector2(111, -24)
 script = ExtResource("9_bhngk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Audience/B4"]
-position = Vector2(188, -40)
+position = Vector2(238, -39)
 sprite_frames = SubResource("SpriteFrames_qsrhp")
 frame_progress = 0.23039429
+
+[node name="GameManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("22_f168p")
+
+[node name="PlayerTeam1" type="Node2D" parent="GameManager"]
+script = ExtResource("27_ob5p8")
+
+[node name="player1" parent="GameManager/PlayerTeam1" instance=ExtResource("22_kqfkx")]
+position = Vector2(-29, -11)
+
+[node name="player2" parent="GameManager/PlayerTeam1" instance=ExtResource("22_kqfkx")]
+position = Vector2(-31, -58)
+
+[node name="player3" parent="GameManager/PlayerTeam1" instance=ExtResource("22_kqfkx")]
+position = Vector2(-30, 32)
+
+[node name="PlayerTeam2" type="Node2D" parent="GameManager"]
+script = ExtResource("29_njqfi")
+
+[node name="player1" parent="GameManager/PlayerTeam2" instance=ExtResource("21_f8k6d")]
+position = Vector2(34, -11)
+
+[node name="player2" parent="GameManager/PlayerTeam2" instance=ExtResource("21_f8k6d")]
+position = Vector2(36, 31)
+
+[node name="player3" parent="GameManager/PlayerTeam2" instance=ExtResource("21_f8k6d")]
+position = Vector2(34, -57)
+
+[node name="ball" parent="GameManager" instance=ExtResource("19_qqp52")]
+position = Vector2(1, -1)
+
+[node name="playtime" type="Timer" parent="GameManager"]
+process_callback = 0
+wait_time = 0.1
 
 [node name="spectrum_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_kqfkx")
@@ -18178,14 +18216,14 @@ volume_db = -3.817
 bus = &"Background"
 script = ExtResource("18_l3bdc")
 
-[node name="ball" parent="." instance=ExtResource("19_qqp52")]
-position = Vector2(1, -1)
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.35, 0.35)
 
 [node name="home" type="Button" parent="."]
-offset_left = 261.0
-offset_top = -203.0
-offset_right = 295.0
-offset_bottom = -167.0
+offset_left = 266.0
+offset_top = -151.0
+offset_right = 296.0
+offset_bottom = -119.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_47qo3")
 keep_pressed_outside = true
 icon = ExtResource("26_47qo3")
@@ -18194,10 +18232,10 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="setting" type="Button" parent="."]
-offset_left = 260.0
-offset_top = -166.0
-offset_right = 294.0
-offset_bottom = -130.0
+offset_left = 268.0
+offset_top = -125.0
+offset_right = 295.0
+offset_bottom = -90.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_47qo3")
 keep_pressed_outside = true
 icon = ExtResource("27_47qo3")
@@ -18205,29 +18243,5 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.35, 0.35)
-
-[node name="PlayerTeam1" type="Node2D" parent="."]
-script = ExtResource("27_ob5p8")
-
-[node name="player1" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-29, -11)
-
-[node name="player2" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-118, -9)
-
-[node name="player3" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-211, -10)
-
-[node name="PlayerTeam2" type="Node2D" parent="."]
-script = ExtResource("29_njqfi")
-
-[node name="player1" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(34, -11)
-
-[node name="player2" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(127, -11)
-
-[node name="player3" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(222, -9)
+[node name="Hud" parent="." instance=ExtResource("31_njqfi")]
+transform = Transform2D(1, 4.7699523e-08, -4.7699523e-08, 1, 0, 0)

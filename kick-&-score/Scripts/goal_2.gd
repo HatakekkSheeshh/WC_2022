@@ -1,8 +1,12 @@
 extends Area2D
+@export_enum("home", "away") var side := "away"
 
-func _ready():
-	connect("body_entered", Callable(self, "_on_Goal_body_entered"))
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
 
-func _on_Goal_body_entered(body):
+func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("ball"):
-		print("The ball is in goal2!")
+		var side_idx :=  1
+		%GameManager.goal(side_idx)
+		
+		print("GOAL for ", side, "! Score=", %GameManager.score)

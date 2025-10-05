@@ -47,6 +47,7 @@ position = Vector2(3, 0)
 script = ExtResource("1_wfiwe")
 
 [node name="Option" parent="." instance=ExtResource("2_e05sn")]
+visible = false
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

@@ -7,7 +7,15 @@ extends Node2D
 @onready var pause_layer = $Option
 @onready var options_panel := $Option/OptionsPanel
 
+# Game Manager
+var score: Array[int] = [0, 0]
+
 func _ready() -> void:
+	# Start game
+	await get_tree().process_frame 
+	%GameManager.reset()
+	%GameManager.start()
+	
 	spectrum.finished.connect(_on_spectrum_finished)
 	spectrum.play()
 
