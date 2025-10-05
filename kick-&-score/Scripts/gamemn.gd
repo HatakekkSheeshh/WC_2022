@@ -8,7 +8,7 @@ signal game_reset
 
 @onready var tick: Timer = $playtime
 @export var match_minutes := 90
-@export var real_seconds := 10 		# Debug, -> 30 is correct
+@export var real_seconds := 30 		# Debug, -> 30 is correct
 @export var tick_sec := 0.1
 
 
