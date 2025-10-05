@@ -18215,10 +18215,7 @@ script = ExtResource("27_ob5p8")
 position = Vector2(-29, -11)
 
 [node name="player2" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-118, -9)
-
-[node name="player3" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-211, -10)
+position = Vector2(-220, -11)
 
 [node name="PlayerTeam2" type="Node2D" parent="."]
 script = ExtResource("29_njqfi")
@@ -18228,9 +18225,5 @@ position = Vector2(34, -11)
 control_scheme = 1
 
 [node name="player2" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(127, -11)
-control_scheme = 1
-
-[node name="player3" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(222, -9)
+position = Vector2(211, -11)
 control_scheme = 1

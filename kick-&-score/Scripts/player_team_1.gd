@@ -8,7 +8,6 @@ var curr_char: int = 0
 
 @onready var char1 = $player1
 @onready var char2 = $player2
-@onready var char3 = $player3
 
 var cpu = Player.ControlScheme.CPU
 var player = Player.ControlScheme.P1
@@ -16,7 +15,6 @@ var player = Player.ControlScheme.P1
 func _ready() -> void:
 	time_left = cooldown
 	char2.change_scheme(cpu)
-	char3.change_scheme(cpu)
 	
 func _process(delta: float) -> void:
 	if time_left > 0.0:
@@ -30,10 +28,6 @@ func _process(delta: float) -> void:
 		reset_char_switch_delay()
 	if can_change && KeyUtils.is_action_just_pressed(player, KeyUtils.Action.SWITCH) && char2.control_scheme == player:
 		char2.change_scheme(cpu)
-		char3.change_scheme(player)
-		reset_char_switch_delay()
-	if can_change && KeyUtils.is_action_just_pressed(player, KeyUtils.Action.SWITCH) && char3.control_scheme == player:
-		char3.change_scheme(cpu)
 		char1.change_scheme(player)
 		reset_char_switch_delay()
 
