@@ -15,9 +15,9 @@ signal game_reset
 var time_elapsed: float = 0.0
 var running := false
 var score: Array[int] = [0, 0]
-var team: int = -1
-var _last_sec := -1 
 
+var _last_sec := -1 
+var goal_lock_until_ms: int = 0  # goal lock
 
 func _ready() -> void:
 	tick.wait_time = tick_sec
@@ -49,13 +49,18 @@ func goal(side: int) -> void:
 	# side: 0 = home, 1 = away
 	var team: int = -1
 	if side == 0:
-		score[1] += 1
 		team = 1
 	elif side == 1:
-		score[0] += 1
 		team = 0
-	score_changed.emit(score, team)
-	# ball.call_deferred # reset to center
+	try_goal(team)
+
+func try_goal(team):
+	var now := Time.get_ticks_msec()
+	if now < goal_lock_until_ms:
+		return 
+	score[team] += 1
+	emit_signal("score_changed", score, team)
+	goal_lock_until_ms = now + 2000  
 
 func _on_tick() -> void:
 	if !running: return

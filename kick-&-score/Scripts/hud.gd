@@ -72,7 +72,7 @@ func _on_time_up() -> void:
 	get_tree().paused = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("restart"):
+	if event.is_action_pressed("restart") and time_up_text.visible:
 		_restart_match()
 
 func _restart_match() -> void:
