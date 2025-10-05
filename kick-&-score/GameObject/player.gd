@@ -44,7 +44,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if control_scheme == ControlScheme.CPU:
-		pass # for CPU (if possible)
+		animation_player.play("idle")
 	else:
 		player_movement(delta)
 	
@@ -63,11 +63,11 @@ func player_movement(delta: float) -> void:
 	elif velocity.x < 0: # go left
 		current_dir = Vector2.LEFT
 		movement = true
-	elif velocity.y < 0: # go down
-		current_dir = Vector2.DOWN
-		movement = true
-	elif velocity.y > 0: # go up
+	elif velocity.y < 0: # go up
 		current_dir = Vector2.UP
+		movement = true
+	elif velocity.y > 0: # go down
+		current_dir = Vector2.DOWN
 		movement = true
 	else:
 		movement = false
@@ -99,3 +99,6 @@ func stamina_bar(delta: float) -> void:
 
 	stamina = clamp(stamina, 0.0, max_stamina)
 	bar.value = stamina
+
+func change_scheme(new_scheme: ControlScheme) -> void:
+	control_scheme = new_scheme

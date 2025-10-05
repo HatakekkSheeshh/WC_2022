@@ -18225,9 +18225,12 @@ script = ExtResource("29_njqfi")
 
 [node name="player1" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
 position = Vector2(34, -11)
+control_scheme = 1
 
 [node name="player2" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
 position = Vector2(127, -11)
+control_scheme = 1
 
 [node name="player3" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
 position = Vector2(222, -9)
+control_scheme = 1
