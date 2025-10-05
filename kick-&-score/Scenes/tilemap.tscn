@@ -25,13 +25,13 @@
 [ext_resource type="PackedScene" uid="uid://cwlu27850s3j5" path="res://GameObject/ball.tscn" id="19_qqp52"]
 [ext_resource type="PackedScene" uid="uid://c5ilymks4lj5n" path="res://GameObject/Player2.tscn" id="21_f8k6d"]
 [ext_resource type="AudioStream" uid="uid://b0nx1yps63jog" path="res://Assets/Project2_Sfx/crowd_shouting.wav" id="21_kqfkx"]
-[ext_resource type="Script" uid="uid://cq2we2w0see0d" path="res://Scripts/gamemn.gd" id="22_f168p"]
+[ext_resource type="Script" path="res://Scripts/gamemn.gd" id="22_f168p"]
 [ext_resource type="PackedScene" uid="uid://qtqqo63pjqih" path="res://GameObject/Player1.tscn" id="22_kqfkx"]
 [ext_resource type="Texture2D" uid="uid://cfhmggmkrdold" path="res://Assets/Free Football Assets/MoreItems/Buttons/HomeButton.png" id="26_47qo3"]
 [ext_resource type="Texture2D" uid="uid://d25il4w18l610" path="res://Assets/Free Football Assets/MoreItems/Buttons/PauseButton.png" id="27_47qo3"]
-[ext_resource type="Script" path="res://Scripts/player_team_1.gd" id="27_ob5p8"]
-[ext_resource type="Script" path="res://Scripts/player_team_2.gd" id="29_njqfi"]
-[ext_resource type="PackedScene" uid="uid://c8s2puhkino7s" path="res://UI/hud.tscn" id="31_njqfi"]
+[ext_resource type="Script" uid="uid://d31m4l311bu14" path="res://Scripts/player_team_1.gd" id="27_ob5p8"]
+[ext_resource type="Script" uid="uid://ckt1ed05m08jj" path="res://Scripts/player_team_2.gd" id="29_njqfi"]
+[ext_resource type="PackedScene" path="res://UI/hud.tscn" id="31_njqfi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l4cen"]
 texture = ExtResource("2_kqfkx")
@@ -18179,6 +18179,13 @@ frame_progress = 0.23039429
 unique_name_in_owner = true
 script = ExtResource("22_f168p")
 
+[node name="ball" parent="GameManager" instance=ExtResource("19_qqp52")]
+position = Vector2(1, -1)
+
+[node name="playtime" type="Timer" parent="GameManager"]
+process_callback = 0
+wait_time = 0.1
+
 [node name="PlayerTeam1" type="Node2D" parent="GameManager"]
 script = ExtResource("27_ob5p8")
 
@@ -18186,29 +18193,18 @@ script = ExtResource("27_ob5p8")
 position = Vector2(-29, -11)
 
 [node name="player2" parent="GameManager/PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-31, -58)
-
-[node name="player3" parent="GameManager/PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-30, 32)
+position = Vector2(-220, -11)
 
 [node name="PlayerTeam2" type="Node2D" parent="GameManager"]
 script = ExtResource("29_njqfi")
 
 [node name="player1" parent="GameManager/PlayerTeam2" instance=ExtResource("21_f8k6d")]
 position = Vector2(34, -11)
+control_scheme = 1
 
 [node name="player2" parent="GameManager/PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(36, 31)
-
-[node name="player3" parent="GameManager/PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(34, -57)
-
-[node name="ball" parent="GameManager" instance=ExtResource("19_qqp52")]
-position = Vector2(1, -1)
-
-[node name="playtime" type="Timer" parent="GameManager"]
-process_callback = 0
-wait_time = 0.1
+position = Vector2(211, -11)
+control_scheme = 1
 
 [node name="spectrum_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_kqfkx")
@@ -18245,25 +18241,6 @@ expand_icon = true
 
 [node name="Hud" parent="." instance=ExtResource("31_njqfi")]
 transform = Transform2D(1, 4.7699523e-08, -4.7699523e-08, 1, 0, 0)
-[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Camera2D2" type="Camera2D" parent="."]
 zoom = Vector2(0.35, 0.35)
-
-[node name="PlayerTeam1" type="Node2D" parent="."]
-script = ExtResource("27_ob5p8")
-
-[node name="player1" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-29, -11)
-
-[node name="player2" parent="PlayerTeam1" instance=ExtResource("22_kqfkx")]
-position = Vector2(-220, -11)
-
-[node name="PlayerTeam2" type="Node2D" parent="."]
-script = ExtResource("29_njqfi")
-
-[node name="player1" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(34, -11)
-control_scheme = 1
-
-[node name="player2" parent="PlayerTeam2" instance=ExtResource("21_f8k6d")]
-position = Vector2(211, -11)
-control_scheme = 1

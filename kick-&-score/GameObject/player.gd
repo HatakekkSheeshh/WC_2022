@@ -42,11 +42,13 @@ func _ready() -> void:
 	# Make sure to set up collision detection
 	$CollisionShape2D.disabled = false
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if control_scheme == ControlScheme.CPU:
 		animation_player.play("idle")
 	else:
 		player_movement(delta)
+		
+	handle_ball_interaction()
 	
 func player_movement(delta: float) -> void:
 	var direction = KeyUtils.get_input_vector(control_scheme)
@@ -102,3 +104,35 @@ func stamina_bar(delta: float) -> void:
 
 func change_scheme(new_scheme: ControlScheme) -> void:
 	control_scheme = new_scheme
+
+func handle_ball_interaction() -> void:
+	# Check for ball collision
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider is RigidBody2D and collider.is_in_group("ball"):
+			ball = collider
+			pushing_ball = true
+			
+			# Calculate kick force based on player's velocity and direction
+			var kick_force = velocity.normalized() * (speed * gain)
+			if sprint:
+				kick_force *= sprint_mult
+			
+			# IMPORTANT: Don't add to the ball's existing velocity, just set it
+			# This prevents the compounding speed effect
+			ball.linear_velocity = kick_force
+			
+			# Apply a small impulse for better feel, but reduce the multiplier
+			ball.apply_impulse(velocity.normalized() * gain * 5)
+			
+			# Add this: prevent the player from being pushed by the ball
+			# by slightly adjusting the player's position away from the ball
+			var push_vector = (global_position - ball.global_position).normalized() * 1.0
+			global_position += push_vector
+	
+	# Reset pushing_ball if we're not colliding with the ball anymore
+	if pushing_ball and get_slide_collision_count() == 0:
+		pushing_ball = false
+		ball = null
