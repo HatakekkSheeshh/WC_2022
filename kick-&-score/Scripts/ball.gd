@@ -1,4 +1,4 @@
-#extends RigidBody2D
+extends RigidBody2D
 #var ball:RigidBody2D =null
 #var pushing_ball:bool =false
 #

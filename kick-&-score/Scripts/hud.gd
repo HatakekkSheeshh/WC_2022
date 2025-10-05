@@ -5,19 +5,30 @@ class_name hud
 @onready var player_label: Label = $%playerlabel 
 @onready var score_label: Label = $%scorelabel
 @onready var time_label: Label = %timelabel
-
+@onready var time_up_text: TextureRect = %time_up_texture
+@onready var time_up_label: Label = %time_up_label
+@onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var gm = %GameManager
+@onready var whistle: AudioStreamPlayer = %whistle 
+@onready var mask: ColorRect = %mask
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	# Default
 	player_label.text = "Group7"
 	player_label.add_theme_color_override("font_color", Color.SKY_BLUE)
 	time_label.text = "10:10"
-
+	 
 	# Init
 	update_score()
 	update_clock()
-	 
+	time_up_text.visible = false
+	time_up_text.visible = false
+	mask.visible = false
+	mask.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	anim.stop(true) 
+	
 	# subscribe
 	gm.time_changed.connect(_on_time_changed)
 	gm.score_changed.connect(_on_score_changed)
@@ -38,5 +49,34 @@ func _on_score_changed(sc: Array[int]) -> void:
 	score_label.text = ScoreHelper.get_score_text(sc)
 
 func _on_time_up() -> void:
-	# show panel, whistle, v.v. 
-	pass
+	time_label.add_theme_color_override("font_color", Color.RED)
+	time_label.text = TimeHelper.get_time_text(int(gm.time_elapsed))
+
+	time_up_text.visible = true	
+	time_up_label.visible = true
+	
+	mask.visible = true		
+	
+	anim.play("game_over")
+	
+	if whistle:
+		whistle.play()
+	get_tree().paused = true
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		_restart_match()
+
+func _restart_match() -> void:
+	if is_instance_valid(anim):
+		anim.play("game_over")
+	time_up_text.visible = false
+	time_up_label.visible = false
+	mask.visible = false
+	
+	get_tree().paused = false
+	gm.pause_game(false)
+	if "reset" in gm and gm.has_method("reset"):
+		gm.reset()
+	if "start" in gm and gm.has_method("start"):
+		gm.start()

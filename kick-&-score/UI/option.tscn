@@ -56,6 +56,7 @@ corner_radius_bottom_left = 8
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxkm1"]
 
 [node name="Option" type="CanvasLayer"]
+process_mode = 3
 
 [node name="OptionsPanel" type="Control" parent="."]
 layout_mode = 3
@@ -192,6 +193,7 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="OptionButton" type="OptionButton" parent="OptionsPanel"]
+visible = false
 layout_mode = 0
 offset_left = 128.0
 offset_top = 38.0

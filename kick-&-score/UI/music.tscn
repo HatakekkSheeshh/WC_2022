@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://68ml6683bene"]
+
+[ext_resource type="AudioStream" uid="uid://ye4n27b68kj5" path="res://Assets/audio/Lamine_Yamal.mp3" id="1_bxwii"]
+[ext_resource type="Script" uid="uid://dxh4ibu7laf6m" path="res://Scripts/intro_music.gd" id="2_5muse"]
+
+[node name="IntroMusic" type="AudioStreamPlayer"]
+stream = ExtResource("1_bxwii")
+bus = &"Intro"
+script = ExtResource("2_5muse")

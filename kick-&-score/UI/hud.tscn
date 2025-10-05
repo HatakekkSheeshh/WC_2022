@@ -1,12 +1,99 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8s2puhkino7s"]
+[gd_scene load_steps=10 format=3 uid="uid://c8s2puhkino7s"]
 
 [ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="1_2o5uh"]
 [ext_resource type="Script" uid="uid://tsw66i0hti5k" path="res://Scripts/hud.gd" id="1_b1lf8"]
 [ext_resource type="Texture2D" uid="uid://dllrh27gs84i1" path="res://Assets/flag/ar.png" id="2_b1lf8"]
 [ext_resource type="Texture2D" uid="uid://bjpa4hrr2kpjm" path="res://Assets/flag/fr.png" id="3_rnl6m"]
 [ext_resource type="Texture2D" uid="uid://bhticto3307q3" path="res://Assets/ui/times-up.png" id="5_rnl6m"]
+[ext_resource type="AudioStream" uid="uid://ckyiwasohl5c4" path="res://Assets/audio/whistle.mp3" id="6_1ui3w"]
+
+[sub_resource type="Animation" id="Animation_rnl6m"]
+resource_name = "game_over"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui_contain/time_up_texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.1643314, 1.1220345), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui_contain/mask:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.23921569)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ui_contain/time_up_label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.39717278),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.011764706), Color(1, 1, 1, 0.9843137)]
+}
+
+[sub_resource type="Animation" id="Animation_1ui3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui_contain/time_up_texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.052185338, 0.08321028)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui_contain/mask:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ui_contain/time_up_label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.011764706)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ui3w"]
+_data = {
+&"RESET": SubResource("Animation_1ui3w"),
+&"game_over": SubResource("Animation_rnl6m")
+}
 
 [node name="Hud" type="CanvasLayer"]
+process_mode = 2
 script = ExtResource("1_b1lf8")
 
 [node name="ui_contain" type="Control" parent="."]
@@ -14,6 +101,18 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="mask" type="ColorRect" parent="ui_contain"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(348.3223, 29.785322)
+color = Color(0, 0, 0, 1)
 
 [node name="ColorRect" type="ColorRect" parent="ui_contain"]
 layout_mode = 1
@@ -86,19 +185,54 @@ theme_override_fonts/font = ExtResource("1_2o5uh")
 text = "10:10"
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="ui_contain"]
+[node name="time_up_texture" type="TextureRect" parent="ui_contain"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.6250002
+anchor_top = 2.0370002
+anchor_right = 3.6250002
+anchor_bottom = 2.0370002
+offset_left = -55.000015
+offset_top = -31.480011
+offset_right = 54.999985
+offset_bottom = 31.519989
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.052185338, 0.08321028)
+pivot_offset = Vector2(55, 31.5)
+texture = ExtResource("5_rnl6m")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="time_up_label" type="Label" parent="ui_contain"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.011764706)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 70.0
-offset_top = 30.0
-offset_right = 180.0
-offset_bottom = 93.0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 179.0
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_rnl6m")
-expand_mode = 2
-stretch_mode = 4
+scale = Vector2(1.096, 1)
+theme_override_fonts/font = ExtResource("1_2o5uh")
+text = "Press R to restart"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+libraries = {
+&"": SubResource("AnimationLibrary_1ui3w")
+}
+
+[node name="whistle" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+process_mode = 2
+stream = ExtResource("6_1ui3w")
