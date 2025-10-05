@@ -18072,6 +18072,7 @@ tile_map_data = PackedByteArray("AAD5/woAAwAXABAAAAD6/woAAwAXABAAAAD4/woAAwARABQ
 tile_set = SubResource("TileSet_wsu2k")
 
 [node name="Goal1" type="Area2D" parent="TileMap/Goals"]
+unique_name_in_owner = true
 script = ExtResource("8_gk80j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Goals/Goal1"]
@@ -18079,6 +18080,7 @@ position = Vector2(-101.5, 128)
 shape = SubResource("RectangleShape2D_f8k6d")
 
 [node name="Goal2" type="Area2D" parent="TileMap/Goals"]
+unique_name_in_owner = true
 position = Vector2(538, 0)
 script = ExtResource("9_r3ohy")
 

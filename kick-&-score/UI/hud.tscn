@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8s2puhkino7s"]
+[gd_scene load_steps=12 format=3 uid="uid://c8s2puhkino7s"]
 
 [ext_resource type="FontFile" uid="uid://djbq4b2hbstmk" path="res://Assets/fonts/Pixellari.ttf" id="1_2o5uh"]
 [ext_resource type="Script" uid="uid://tsw66i0hti5k" path="res://Scripts/hud.gd" id="1_b1lf8"]
 [ext_resource type="Texture2D" uid="uid://dllrh27gs84i1" path="res://Assets/flag/ar.png" id="2_b1lf8"]
 [ext_resource type="Texture2D" uid="uid://bjpa4hrr2kpjm" path="res://Assets/flag/fr.png" id="3_rnl6m"]
 [ext_resource type="Texture2D" uid="uid://bhticto3307q3" path="res://Assets/ui/times-up.png" id="5_rnl6m"]
+[ext_resource type="Texture2D" uid="uid://cjte3y5g1dskt" path="res://Assets/ui/goal.png" id="6_0j753"]
 [ext_resource type="AudioStream" uid="uid://ckyiwasohl5c4" path="res://Assets/audio/whistle.mp3" id="6_1ui3w"]
 
 [sub_resource type="Animation" id="Animation_rnl6m"]
@@ -85,11 +86,75 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0.011764706)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ui_contain/goal_texture:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9.998679e-06, 9.998679e-06)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ui_contain/goal_label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.011764706)]
+}
+
+[sub_resource type="Animation" id="Animation_i0a73"]
+resource_name = "goal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui_contain/goal_texture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.602351, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(9.998679e-06, 9.998679e-06), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui_contain/mask:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ui_contain/goal_label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.011764706), Color(0.07622752, 0.13746008, 0.6101408, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ui3w"]
 _data = {
 &"RESET": SubResource("Animation_1ui3w"),
-&"game_over": SubResource("Animation_rnl6m")
+&"game_over": SubResource("Animation_rnl6m"),
+&"goal": SubResource("Animation_i0a73")
 }
 
 [node name="Hud" type="CanvasLayer"]
@@ -225,9 +290,49 @@ theme_override_fonts/font = ExtResource("1_2o5uh")
 text = "Press R to restart"
 horizontal_alignment = 1
 
+[node name="goal_texture" type="TextureRect" parent="ui_contain"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 3.6250002
+anchor_top = 2.0370002
+anchor_right = 3.6250002
+anchor_bottom = 2.0370002
+offset_left = -55.000015
+offset_top = -31.480011
+offset_right = 54.999985
+offset_bottom = 31.519989
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.998679e-06, 9.998679e-06)
+pivot_offset = Vector2(55, 31.5)
+texture = ExtResource("6_0j753")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="goal_label" type="Label" parent="ui_contain"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.011764706)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 43.5
+offset_top = 80.0
+offset_right = 185.5
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.096, 1)
+theme_override_fonts/font = ExtResource("1_2o5uh")
+text = "Player 1 leads 1 - 0"
+horizontal_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
-process_mode = 2
+process_mode = 3
 libraries = {
 &"": SubResource("AnimationLibrary_1ui3w")
 }

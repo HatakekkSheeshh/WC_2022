@@ -2,20 +2,20 @@ extends Node2D
 
 # Signal
 signal time_changed(seconds_left: int)
-signal score_changed(score: Array[int])
+signal score_changed(score: Array[int], team: int)
 signal time_up
 signal game_reset
 
 @onready var tick: Timer = $playtime
 @export var match_minutes := 45
-@export var real_seconds := 240		
+@export var real_seconds := 240
 @export var tick_sec := 0.1
 
 
 var time_elapsed: float = 0.0
 var running := false
 var score: Array[int] = [0, 0]
-
+var team: int = -1
 var _last_sec := -1 
 
 
@@ -39,7 +39,7 @@ func reset() -> void:
 	time_elapsed = 0.0
 	_last_sec = -1
 	score = [0, 0]
-	score_changed.emit(score)
+	score_changed.emit(score, -1)
 	_emit_time_if_changed()
 	tick.paused = false
 	
@@ -47,11 +47,14 @@ func reset() -> void:
 
 func goal(side: int) -> void:
 	# side: 0 = home, 1 = away
+	var team: int = -1
 	if side == 0:
 		score[1] += 1
+		team = 1
 	elif side == 1:
 		score[0] += 1
-	score_changed.emit(score)
+		team = 0
+	score_changed.emit(score, team)
 	# ball.call_deferred # reset to center
 
 func _on_tick() -> void:

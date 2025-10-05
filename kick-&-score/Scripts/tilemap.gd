@@ -12,10 +12,6 @@ extends Node2D
 var score: Array[int] = [0, 0]
 @onready var gm = %GameManager
 
-# Goal
-@onready var goal1 = $TileMap/Goals/Goal1
-@onready var goal2 = $TileMap/Goals/Goal2
-
 # Reset
 var _spawn: Dictionary = {}               # { Node2D: Transform2D }
 var _reset_nodes: Array[Node2D] = []      # [ Node2D, Node2D, ... ]
@@ -50,9 +46,8 @@ func _ready() -> void:
 	for n: Node2D in _reset_nodes:
 		_spawn[n] = n.global_transform
 
-	gm.game_reset.connect(_on_game_reset)
-	goal1.scored.connect(_on_game_reset)
-	goal2.scored.connect(_on_game_reset)
+	gm.game_reset.connect(_on_match_reset)
+	gm.score_changed.connect(_on_goal_scored)
 	
 func _on_spectrum_finished() -> void:
 	spectrum.play()
@@ -74,8 +69,17 @@ func _close_options_in_game() -> void:
 	gm.pause_game(false)
 	get_tree().paused = false
 
-func _on_game_reset() -> void:
+func _on_match_reset() -> void:
+	_on_game_reset()
+
+func _on_goal_scored(_sc: Array[int], team: int) -> void:
+	if team == -1:
+		return  # là reset trận → đã có _on_match_reset lo rồi
 	await get_tree().create_timer(1.0).timeout
+	_on_game_reset()
+
+func _on_game_reset() -> void:
+	await get_tree().create_timer(2.0).timeout
 	
 	for n: Node2D in _reset_nodes:
 		var xf: Transform2D = _spawn.get(n, n.global_transform)
