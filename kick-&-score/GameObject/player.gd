@@ -46,6 +46,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if control_scheme == ControlScheme.CPU:
 		animation_player.play("idle")
+		stamina_recover(delta)
 	else:
 		player_movement(delta)
 		
@@ -100,6 +101,11 @@ func stamina_bar(delta: float) -> void:
 	else:
 		stamina += (stamina_recover_move if movement else stamina_recover_idle) * delta
 
+	stamina = clamp(stamina, 0.0, max_stamina)
+	bar.value = stamina
+
+func stamina_recover(delta: float) -> void:
+	stamina += (stamina_recover_move if movement else stamina_recover_idle) * delta
 	stamina = clamp(stamina, 0.0, max_stamina)
 	bar.value = stamina
 
