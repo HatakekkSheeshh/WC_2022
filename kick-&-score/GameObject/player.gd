@@ -105,7 +105,7 @@ func stamina_bar(delta: float) -> void:
 	bar.value = stamina
 
 func stamina_recover(delta: float) -> void:
-	stamina += (stamina_recover_move if movement else stamina_recover_idle) * delta
+	stamina += (stamina_recover_idle) * delta
 	stamina = clamp(stamina, 0.0, max_stamina)
 	bar.value = stamina
 
