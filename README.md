@@ -8,8 +8,7 @@
 2. [Group Members](#group-members)
 3. [Features](#features)
 4. [How to Download and Run](#how-to-download-and-run)
-5. [Controls](#controls)
-6. [License](#license)
+
 
 ---
 
@@ -62,9 +61,6 @@ Follow these steps to download and run the game:
 
 3. **Run the Game:**
    - Once the project is loaded, click the **Play** button in the Godot editor to start the game.
-## License
-
-This project is licensed under the **MIT License**. Feel free to use, modify, and distribute the code as long as proper credit is given to the original authors.
 
 ---
 
