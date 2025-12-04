@@ -55,7 +55,7 @@ func _on_score_changed(sc: Array[int], team: int) -> void:
 	
 	team += 1
 	print("Team" + str(team))
-	if team != -1: 
+	if team != -1 or team != 0: 
 		_play_goal_anim(score_label.text, team)
 	
 func _on_time_up() -> void:
@@ -90,6 +90,8 @@ func _restart_match() -> void:
 		gm.start()
 
 func _play_goal_anim(text: String, team: int) -> void:
+	if team == 0:
+		return	 
 	goal_banner.visible = true
 	goal_label.visible = true 
 	
